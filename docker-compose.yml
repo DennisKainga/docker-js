@@ -1,0 +1,20 @@
+services:
+  vite:
+    build:
+      context: ./devops/
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${UID:-1000}
+        GROUP_ID: ${GID:-1000}
+        USERNAME: ${USER:-kainga}F65
+    container_name: vite-app
+    volumes:
+      - .:/app
+    ports:
+      - "5173:5173"
+    networks:
+      - vite-net
+
+networks:
+  vite-net:
+    driver: bridge
